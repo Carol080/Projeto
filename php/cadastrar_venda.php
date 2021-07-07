@@ -3,7 +3,6 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL & ~E_NOTICE);
 
-include_once 'include/conecta_bd.inc';
 include_once 'Venda.php';
 include_once 'Venda_produtos.php';
 include_once 'Conexao.php';
@@ -13,14 +12,12 @@ $total = $_POST['total'];
 
 $venda = new Venda($vendedor, $total);
 $resultado = $venda->cadastrar_venda();
-
-
+$id_venda = $resultado;
 if ($resultado == "Erro ao realizar cadastro!") {
     echo "<h2>" . $resultado . "</h2>";
 }
 
 $produtos = $_POST['produtos'];
-$id_venda = $resultado;
 
 for ($i = 0; $i < count($produtos); $i++) {
     $produto = $produtos[$i];

@@ -18,10 +18,8 @@ botaoAdicionarVenda.addEventListener("click", function (event) {
             produtos: vendasA,
         },
         error: function (resposta) {
-            console.log(resposta);
         },
         success: function (resposta) {
-            console.log(resposta);
             $("#vendedor").val(" ");
             $("#tabela-nova-venda").html(" ");
             $("#rodape").html(" ");
