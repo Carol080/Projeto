@@ -9,7 +9,7 @@ $vendedor = $_POST['vendedor'];
 $conectaBD = new Conexao();
 $vendas = [];
 
-/*if (empty($vendedor) && empty($data)) {
+if (empty($vendedor) && empty($data)) {
     $query = "SELECT * FROM venda";
 } elseif (empty($data)) {
     $query = "SELECT * FROM venda WHERE vendedor = '$vendedor'";
@@ -19,10 +19,20 @@ $vendas = [];
     $query = "SELECT * FROM venda WHERE data = '$data' AND vendedor = '$vendedor'";
 }
 
+ $conectaBD->executarQuery($query);
+
+
+    echo json_encode($conectaBD->resultado());
+
+
+
+
+
+
 //$resultado = $conectaBD->executarQuery($query);
 //print_r($resultado);
 
-if (mysqli_num_rows($resultado) > 0) {
+/*if (mysqli_num_rows($resultado) > 0) {
     while ($row = mysqli_fetch_assoc($resultado)) {
         $venda = [];
         $id = $row['id'];
@@ -39,7 +49,6 @@ if (mysqli_num_rows($resultado) > 0) {
 
         $vendas[] = $venda;
 
-    }
 
-//}*/
-echo json_encode($vendas);
+
+}*/
