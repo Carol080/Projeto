@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body>
+<header>
+    <div>
+        <h2>Wayne Industries - Sales</h2>
+    </div>
+</header>
+
+<label for="buscar-data">Data</label>
+<input type="date" name="buscar-data" id="buscar-data">
+
+<label for="buscar-vendedor" id="label-buscar-vendedor">Vendedor</label>
+<input type="text" name="buscar-vendedor" id="buscar-vendedor">
+
+<button id="buscar-venda">Buscar</button>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Vendedor</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody id="tabela-vendas"></tbody>
+    <tr class="venda">
+        <td class="info-id"></td>
+        <td class="info-data"></td>
+        <td class="info-hora"></td>
+        <td class="info-vendedor"></td>
+        <td class="info-total"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<button id="nova-venda" onclick="window.location.href='cadastro.html'">Nova BatVenda</button>
+
+<script src="js/buscar-venda.js"></script>
+
+<script src="js/tabela-listar-venda.js"></script>
+
+
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+</body>
+</html>

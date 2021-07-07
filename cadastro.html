@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="cadastro.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+<h2>Nova Venda</h2>
+</header>
+<ul id="mensagem-erro"></ul>
+<div id="form-cadastra">
+
+    <label for="nome" id="labelProduto">Produto</label>
+    <input type="text" name="nome" id="nome">
+
+    <label for="valor" id="labelValor">Valor unitário</label>
+    <input type="number" name="valor" id="valor">
+
+    <label for="quantidade" id="labelQuantidade">Quantidade</label>
+    <input type="number" name="quantidade" id="quantidade">
+
+    <button id="lancarVenda">Lançar</button>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Valor unitário</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+
+        </tr>
+        </thead>
+        <tbody id="tabela-nova-venda">
+        <tr class="venda">
+            <td class="info-produto"></td>
+            <td class="info-valor-unitario"></td>
+            <td class="info-quantidade"></td>
+            <td class="info-total"></td>
+        </tr>
+        </tbody>
+
+        <tfoot id="rodape">
+
+        <td id="info-total-venda"></td>
+
+        </tfoot>
+    </table>
+
+    <label for="vendedor">Vendedor</label>
+    <input type="text" name="vendedor" id="vendedor">
+
+    <button id="adicionarVenda">Salvar Venda</button>
+
+</div>
+<button id="voltar" onclick="window.location.href='index.html'">Voltar</button>
+<button id="limpar-venda">Limpar venda</button>
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script src="js/formLancar.js"></script>
+<script src="js/cadastrar-venda.js"></script>
+</body>
+</html>
