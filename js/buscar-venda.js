@@ -11,7 +11,6 @@ botaoBuscarVenda.addEventListener("click", function () {
         error: function (resposta) {
         },
         success: function (resposta) {
-            console.log(resposta);
             $("#tabela-vendas").html(" ");
             let vendas = JSON.parse(resposta);
             vendas.forEach(function (venda) {
