@@ -28,7 +28,7 @@ class  Venda_produtos
         if ($resultado->insert_id > 0) {
             return 'Cadastro venda_Produto realizado com sucesso!';
         }
-        return "Erro ao realizar cadastro!";
+        return 'Erro ao realizar cadastro!';
 
     }
 }

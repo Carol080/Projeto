@@ -15,7 +15,7 @@ botaoLancarVenda.addEventListener("click", function (event) {
     }
 
     adicionaNovaVendaNaTabela(vendaP);
-   $("#nome").val("");
+    $("#nome").val("");
     $("#valor").val("");
     $("#quantidade").val("");
     adicionaRodape(venda);

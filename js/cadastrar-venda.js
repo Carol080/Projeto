@@ -20,9 +20,8 @@ botaoAdicionarVenda.addEventListener("click", function (event) {
         error: function (resposta) {
         },
         success: function (resposta) {
-            $("#vendedor").val(" ");
-            $("#tabela-nova-venda").html(" ");
-            $("#rodape").html(" ");
+            console.log(resposta);
+            location.reload();
         }
 
     }));
@@ -40,13 +39,4 @@ function validaCadastro(venda) {
     return erros;
 }
 
-let botaoLimparVenda = document.querySelector("#limpar-venda");
-botaoLimparVenda.addEventListener("click", function (){
-    $("#tabela-nova-venda").html("");
-    $("#rodape").html("");
-    $("#nome").val("");
-    $("#valor").val("");
-    $("#quantidade").val("");
-    $("#vendedor").val("");
-})
 

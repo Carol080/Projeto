@@ -1,5 +1,6 @@
 <?php
 include_once 'Conexao.php';
+
 class Venda
 {
     private $vendedor;
@@ -26,7 +27,7 @@ class Venda
         $query = "INSERT INTO venda (vendedor, data, hora, total) 
         VALUES ('$this->vendedor', '$this->data', '$this->hora', '$this->total')";
 
-       $resultado = $this->conectaBD->executarQuery($query);
+        $resultado = $this->conectaBD->executarQuery($query);
 
         if ($resultado->insert_id > 0) {
             return $resultado->insert_id;

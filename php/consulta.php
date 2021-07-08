@@ -4,6 +4,7 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
 include_once 'Conexao.php';
+
 $data = $_POST['data'];
 $vendedor = $_POST['vendedor'];
 $conectaBD = new Conexao();
