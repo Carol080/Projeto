@@ -22,17 +22,30 @@ class Venda
         $this->conectaBD = new Conexao();
     }
 
-    public function cadastrar_venda()
+    public function cadastrar()
     {
         $query = "INSERT INTO venda (vendedor, data, hora, total) 
         VALUES ('$this->vendedor', '$this->data', '$this->hora', '$this->total')";
 
         $resultado = $this->conectaBD->executarQuery($query);
 
+        $retorno = [
+            'status' => false,
+            'mensagem' => 'houve um erro ao se cadastrar',
+            'id' => $resultado->insert_id
+        ];
+
         if ($resultado->insert_id > 0) {
-            return $resultado->insert_id;
+            $retorno['status'] = true;
+            $retorno['mensagem'] = 'Cadastro realizado com sucesso!';
         }
-        return "Erro ao realizar cadastro!";
+
+        return $retorno;
+
+//        if ($resultado->insert_id > 0) {
+//            return $resultado->insert_id;
+//        }
+//        return "Houve um problema, contate o suporte";
     }
 }
 

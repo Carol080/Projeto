@@ -3,33 +3,31 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL & ~E_NOTICE);
 
-include_once 'Venda.php';
-include_once 'Venda_produtos.php';
-include_once 'Conexao.php';
+require_once 'Venda.php';
+require_once 'VendaProdutos.php';
+require_once 'Conexao.php';
 
 $vendedor = $_POST['vendedor'];
 $total = $_POST['total'];
 
 $venda = new Venda($vendedor, $total);
-$resultado = $venda->cadastrar_venda();
-$id_venda = $resultado;
-if ($resultado == "Erro ao realizar cadastro!") {
-    echo "<h2>" . $resultado . "</h2>";
+$resultado = $venda->cadastrar();
+$idVenda = $resultado['id'];
+
+
+if ($resultado['status'] === false) {
+    echo "<h2>{$resultado['mensagem']}</h2>";
 }
 
 $produtos = $_POST['produtos'];
 
-for ($i = 0; $i < count($produtos); $i++) {
-    $produto = $produtos[$i];
+    foreach ($produtos as $produto){
     $nome = $produto ['nome'];
     $valor = $produto['valor'];
     $quantidade = $produto['quantidade'];
-    $venda_produtos = new Venda_produtos ($id_venda, $nome, $valor, $quantidade);
-    $resultado = $venda_produtos->cadastrar_vendaP();
-
-    if ($resultado == "Cadastro venda_Produto realizado com sucesso!") {
-        echo "<h2>" . $resultado . "</h2>";
-    } else {
-        echo '<h2>Erro ao realizar cadastro...</h2> <br>';
-    }
+    $vendaProdutos = new VendaProdutos ($idVenda, $nome, $valor, $quantidade);
+    $resultado = $vendaProdutos->cadastrar();
+        if ($resultado['status'] == false) {
+            echo "<h2>{$resultado['mensagem']}</h2>";
+        }
 }

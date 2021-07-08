@@ -9,7 +9,7 @@ botaoAdicionarVenda.addEventListener("click", function (event) {
         return;
     }
 
-    ($.ajax({
+    $.ajax({
         type: 'POST',
         url: 'php/cadastrar_venda.php',
         data: {
@@ -21,10 +21,10 @@ botaoAdicionarVenda.addEventListener("click", function (event) {
         },
         success: function (resposta) {
             console.log(resposta);
-            location.reload();
+             location.reload();
         }
 
-    }));
+    });
 
 
 });

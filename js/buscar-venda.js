@@ -1,7 +1,7 @@
 let botaoBuscarVenda = document.querySelector("#buscar-venda");
 
 botaoBuscarVenda.addEventListener("click", function () {
-    ($.ajax({
+    $.ajax({
         url: 'php/consulta.php',
         type: "POST",
         data: {
@@ -20,6 +20,6 @@ botaoBuscarVenda.addEventListener("click", function () {
             $("#buscar-data").val("");
         }
 
-    }));
+    });
 })
 
