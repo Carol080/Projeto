@@ -12,8 +12,7 @@ $total = $_POST['total'];
 
 $venda = new Venda($vendedor, $total);
 $resultado = $venda->cadastrar();
-$idVenda = $resultado['id'];
-
+$id_venda = $resultado['id'];
 
 if ($resultado['status'] === false) {
     echo "<h2>{$resultado['mensagem']}</h2>";
@@ -21,13 +20,15 @@ if ($resultado['status'] === false) {
 
 $produtos = $_POST['produtos'];
 
-    foreach ($produtos as $produto){
+foreach ($produtos as $produto) {
     $nome = $produto ['nome'];
     $valor = $produto['valor'];
     $quantidade = $produto['quantidade'];
-    $vendaProdutos = new VendaProdutos ($idVenda, $nome, $valor, $quantidade);
+
+    $vendaProdutos = new VendaProdutos ($id_venda, $nome, $valor, $quantidade);
+
     $resultado = $vendaProdutos->cadastrar();
-        if ($resultado['status'] == false) {
-            echo "<h2>{$resultado['mensagem']}</h2>";
-        }
+    if ($resultado['status'] === false) {
+        echo "<h2>{$resultado['mensagem']}</h2>";
+    }
 }

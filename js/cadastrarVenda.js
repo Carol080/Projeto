@@ -1,7 +1,6 @@
-let botaoAdicionarVenda = document.querySelector("#adicionarVenda");
-botaoAdicionarVenda.addEventListener("click", function (event) {
+$(document).on('click', '#adicionarVenda', function (event) {
     event.preventDefault();
-    let form = document.querySelector("#form-cadastra"),
+    let form = $("#form-cadastra"),
         venda = obtemVendaDoFormulario(form),
         erros = validaCadastro(venda);
     if (erros.length > 0) {
@@ -11,17 +10,14 @@ botaoAdicionarVenda.addEventListener("click", function (event) {
 
     $.ajax({
         type: 'POST',
-        url: 'php/cadastrar_venda.php',
+        url: 'php/cadastrarVenda.php',
         data: {
             vendedor: $('#vendedor').val(),
             total: totalVenda,
-            produtos: vendasA,
-        },
-        error: function (resposta) {
+            produtos: vendas,
         },
         success: function (resposta) {
-            console.log(resposta);
-             location.reload();
+            location.reload();
         }
 
     });

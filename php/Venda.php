@@ -36,16 +36,15 @@ class Venda
         ];
 
         if ($resultado->insert_id > 0) {
-            $retorno['status'] = true;
-            $retorno['mensagem'] = 'Cadastro realizado com sucesso!';
+            $retorno = [
+                'status' => true,
+                'mensagem' => 'Cadastro realizado!',
+                'id' => $resultado->insert_id
+            ];
         }
 
         return $retorno;
 
-//        if ($resultado->insert_id > 0) {
-//            return $resultado->insert_id;
-//        }
-//        return "Houve um problema, contate o suporte";
     }
 }
 

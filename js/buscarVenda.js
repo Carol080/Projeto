@@ -1,14 +1,10 @@
-let botaoBuscarVenda = document.querySelector("#buscar-venda");
-
-botaoBuscarVenda.addEventListener("click", function () {
+$(document).on('click', '#buscar-venda', function () {
     $.ajax({
         url: 'php/consulta.php',
         type: "POST",
         data: {
             data: $("#buscar-data").val(),
             vendedor: $("#buscar-vendedor").val(),
-        },
-        error: function (resposta) {
         },
         success: function (resposta) {
             $("#tabela-vendas").html(" ");

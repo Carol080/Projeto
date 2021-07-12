@@ -17,6 +17,7 @@ class Conexao
     public function executarQuery($sql)
     {
         $this->resultado = $this->conexao->query($sql);
+
         return $this->conexao;
     }
 

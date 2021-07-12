@@ -1,27 +1,26 @@
-let botaoLancarVenda = document.querySelector("#lancarVenda"),
-    vendasA = [],
+let vendas = [],
     totalVenda = 0;
 
-botaoLancarVenda.addEventListener("click", function (event) {
+$(document).on('click', '#lancarVenda', function (event) {
     event.preventDefault();
-    let form = document.querySelector("#form-cadastra"),
+    let form = $("#form-cadastra"),
         venda = obtemVendaDoFormulario(form),
-        vendaP = obtemProduto(form);
-    erros = validaVenda(vendaP, venda);
+        vendaProdutos = obtemProduto(form),
+        erros = validaVenda(vendaProdutos, venda);
 
     if (erros.length > 0) {
         exibeMensagensDeErro(erros);
         return;
     }
 
-    adicionaNovaVendaNaTabela(vendaP);
+    adicionaNovaVendaNaTabela(vendaProdutos);
     $("#nome").val("");
     $("#valor").val("");
     $("#quantidade").val("");
     adicionaRodape(venda);
 
-    let mensagensErro = document.querySelector("#mensagem-erro");
-    mensagensErro.innerHTML = " ";
+    let mensagensErro = $("#mensagem-erro");
+    mensagensErro.html("");
 });
 
 function obtemVendaDoFormulario() {
@@ -33,56 +32,56 @@ function obtemVendaDoFormulario() {
 }
 
 function obtemProduto() {
-    let vendaP = {
+    let vendaProdutos = {
         nome: $("#nome").val(),
         valor: $("#valor").val(),
         quantidade: $("#quantidade").val(),
         total: calculaTotal($("#valor").val(), $("#quantidade").val()),
     }
-    vendasA.push(vendaP);
-    return vendaP;
+    vendas.push(vendaProdutos);
+    return vendaProdutos;
 }
 
-function montaTr(vendaP) {
-    let vendaTr = document.createElement("tr");
-    vendaTr.classList.add("venda");
+function montaTr(vendaProdutos) {
+    let vendaTr = $("<tr></tr>");
+    vendaTr.addClass("venda");
 
-    vendaTr.appendChild(montaTd(vendaP.nome, "info-produto"));
-    vendaTr.appendChild(montaTd(vendaP.valor, "info-valor-unitario"));
-    vendaTr.appendChild(montaTd(vendaP.quantidade, "info-quantidade"));
-    vendaTr.appendChild(montaTd(vendaP.total, "info-total"));
+    vendaTr.append(montaTd(vendaProdutos.nome, "info-produto"));
+    vendaTr.append(montaTd(vendaProdutos.valor, "info-valor-unitario"));
+    vendaTr.append(montaTd(vendaProdutos.quantidade, "info-quantidade"));
+    vendaTr.append(montaTd(vendaProdutos.total, "info-total"));
 
     return vendaTr;
 }
 
 
 function montaTd(dado, classe) {
-    let td = document.createElement("td");
-    td.classList.add(classe);
-    td.textContent = dado;
+    let td = $("<td></td>");
+    td.addClass(classe);
+    td.text(dado);
 
     return td;
 }
 
-function validaVenda(vendaP) {
+function validaVenda(vendaProdutos) {
     let erros = [];
-    if (vendaP.nome == 0) {
+    if (vendaProdutos.nome == 0) {
         erros.push("Informe o produto!");
     }
 
-    if (vendaP.quantidade == 0 ) {
+    if (vendaProdutos.quantidade == 0) {
         erros.push("Informe a quantidade!");
     }
 
-    if (vendaP.valor == 0) {
+    if (vendaProdutos.valor == 0) {
         erros.push("Informe o valor!");
     }
 
-    if(vendaP.quantidade < 0){
+    if (vendaProdutos.quantidade < 0) {
         erros.push("A quantidade não pode ser negativa!");
     }
 
-    if(vendaP.valor < 0){
+    if (vendaProdutos.valor < 0) {
         erros.push("O valor não pode ser negativo!");
     }
 
@@ -90,20 +89,20 @@ function validaVenda(vendaP) {
 }
 
 function exibeMensagensDeErro(erros) {
-    let ul = document.querySelector("#mensagem-erro");
-    ul.innerHTML = "";
+    let ul = $("#mensagem-erro");
+    ul.html("");
 
     erros.forEach(function (erro) {
-        let li = document.createElement("li");
-        li.textContent = erro;
-        ul.appendChild(li);
+        let li = $("<li></li>");
+        li.text(erro);
+        ul.append(li);
     });
 }
 
 function adicionaNovaVendaNaTabela(venda) {
     let vendaTr = montaTr(venda);
-    let tabela = document.querySelector("#tabela-nova-venda");
-    tabela.appendChild(vendaTr);
+    let tabela = $("#tabela-nova-venda");
+    tabela.append(vendaTr);
 
 }
 
