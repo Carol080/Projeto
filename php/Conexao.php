@@ -2,10 +2,10 @@
 
 class Conexao
 {
-    private $host = "177.70.2.70";
-    private $usuario = "dev1";
-    private $senha = "memo@2021";
-    private $bd = "memocash_0";
+    private $host = "";
+    private $usuario = "";
+    private $senha = "";
+    private $bd = "";
     private $conexao;
     private $resultado;
 
