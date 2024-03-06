@@ -1,26 +1,38 @@
 let vendas = [],
     totalVenda = 0;
 
-$(document).on('click', '#lancarVenda', function (event) {
-    event.preventDefault();
-    let form = $("#form-cadastra"),
-        venda = obtemVendaDoFormulario(form),
-        vendaProdutos = obtemProduto(form),
-        erros = validaVenda(vendaProdutos, venda);
+$(document).ready(function () {
 
-    if (erros.length > 0) {
-        exibeMensagensDeErro(erros);
-        return;
-    }
+    $(document).on('click', '#lancarVenda', function (event) {
+        event.preventDefault();
+        let form = $("#form-cadastra"),
+            venda = obtemVendaDoFormulario(form),
+            vendaProdutos = obtemProduto(form),
+            erros = validaVenda(vendaProdutos, venda);
 
-    adicionaNovaVendaNaTabela(vendaProdutos);
-    $("#nome").val("");
-    $("#valor").val("");
-    $("#quantidade").val("");
-    adicionaRodape(venda);
+        if (erros.length > 0) {
+            exibeMensagensDeErro(erros);
+            return;
+        }
 
-    let mensagensErro = $("#mensagem-erro");
-    mensagensErro.html("");
+        adicionaNovaVendaNaTabela(vendaProdutos);
+
+        adicionaRodape(venda);
+        $("#nome").val("");
+        $("#valor").val("");
+        $("#quantidade").val("");
+    });
+
+    $(document).on('click', '#adicionarVenda', function (event) {
+        event.preventDefault();
+        armazenarDadosLocalStorage();
+        // let tbody = document.getElementById('tabela-nova-venda');
+        // tbody.innerHTML = '';
+        $("#tabela-nova-venda").html('');
+        $("#info-total-venda").html('')
+        $("#vendedor").val("");
+
+    });
 });
 
 function obtemVendaDoFormulario() {
@@ -53,7 +65,6 @@ function montaTr(vendaProdutos) {
 
     return vendaTr;
 }
-
 
 function montaTd(dado, classe) {
     let td = $("<td></td>");
@@ -103,7 +114,6 @@ function adicionaNovaVendaNaTabela(venda) {
     let vendaTr = montaTr(venda);
     let tabela = $("#tabela-nova-venda");
     tabela.append(vendaTr);
-
 }
 
 function adicionaRodape() {
@@ -116,5 +126,27 @@ function calculaTotal(valor, quantidade) {
     total = valor * quantidade;
     totalVenda += total;
     return total;
+}
 
+
+function armazenarDadosLocalStorage() {
+    var dataAtual = new Date();
+    var dia = dataAtual.getDate();
+    var mes = dataAtual.getUTCMonth() + 1;
+    var ano = dataAtual.getFullYear();
+
+    var horas = dataAtual.getHours();
+    var minutos = dataAtual.getMinutes();
+
+    var dadosVenda = {
+        total: $("#info-total-venda").val(),
+        data: dia + '/' + mes + '/' + ano,
+        hora: horas + ':' + minutos,
+        vendedor: $("#vendedor").val()
+    };
+
+    // Salvando a venda no localStorage
+    var vendasSalvas = JSON.parse(localStorage.getItem('vendasSalvas')) || [];
+    vendasSalvas.push(dadosVenda);
+    localStorage.setItem('vendasSalvas', JSON.stringify(vendasSalvas));
 }
